@@ -3,13 +3,29 @@ import {
   Nav,
   Navbar,
   NavDropdown,
-  Form,
-  Button,
-  FormControl,
+
 } from "react-bootstrap";
 
-export default class Header extends Component {
+import {connect} from 'react-redux';
+
+
+ class Header extends Component {
+   renderContent(){
+     switch(this.props.auth){
+       case null:
+          return ;
+       case false:
+          return (
+            <Nav.Link href="/auth/google">Login with Google</Nav.Link>
+          );
+       default:
+         return (
+          <Nav.Link href="/api/logout">Logout</Nav.Link>
+         );
+     }
+   }
   render() {
+    
     return (
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -31,7 +47,7 @@ export default class Header extends Component {
             </NavDropdown>
           </Nav>
           <Nav className="ml-auto">
-            <Nav.Link href="#link">Login with Google</Nav.Link>
+            {/* <Nav.Link href="#link">Login with Google</Nav.Link> */}{this.renderContent()}
           </Nav>
           
           {/* <Form inline>
@@ -43,3 +59,8 @@ export default class Header extends Component {
     );
   }
 }
+function mapStateToProps({auth}){
+  return {auth}
+}
+
+export default connect(mapStateToProps) (Header);

@@ -16,7 +16,7 @@ class App extends Component{
   componentDidMount(){
       this.props.fetchUser();
   };
-  render(){``
+  render(){
     return (
       <div className="App">
         <BrowserRouter>
