@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
+import Payments from '../payments/payments';
+
 import {
   Nav,
   Navbar,
@@ -19,16 +22,17 @@ import {connect} from 'react-redux';
             <Nav.Link href="/auth/google">Login with Google</Nav.Link>
           );
        default:
-         return (
-          <Nav.Link href="/api/logout">Logout</Nav.Link>
-         );
+         return [
+          <Nav.Link key="1"><Payments /></Nav.Link>,
+          <Nav.Link key="2" href="/api/logout">Logout</Nav.Link>
+         ];
      }
    }
   render() {
     
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand ><Link to={this.props.auth ? '/surveys' : '/'} style={{textDecoration:'none'}}>React-Bootstrap</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
