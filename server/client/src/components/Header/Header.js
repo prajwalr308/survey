@@ -23,8 +23,9 @@ import {connect} from 'react-redux';
           );
        default:
          return [
-          <Nav.Link key="1"><Payments /></Nav.Link>,
-          <Nav.Link key="2" href="/api/logout">Logout</Nav.Link>
+          <Nav.Link key="1" ><Payments /></Nav.Link>,
+          <Nav.Link key="3" style={{margin:'8px 10px'}}>Credits:{this.props.auth.credits}</Nav.Link>,
+          <Nav.Link key="2" style={{margin:'8px 10px'}} href="/api/logout">Logout</Nav.Link>
          ];
      }
    }

@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require('./models/user');
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const passport = require("passport");
 
@@ -21,6 +22,7 @@ connection.once("open", () => {
 });
 
 const app = express();
+app.use(bodyParser.json());
 app.use(cookieSession({
   maxAge:30 * 24 * 60 * 60 *1000,
   keys:[keys.cookieKey]
@@ -30,7 +32,7 @@ app.use(passport.session());
 
 
 require("./routes/authRoutes")(app);
-
+require("./routes/billingRoutes")(app);
 
 const port = process.env.PORT || 5000;
 
